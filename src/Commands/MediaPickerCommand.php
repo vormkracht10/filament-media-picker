@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Vormkracht10\MediaPicker\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MediaPickerCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-media-picker';
 
     public $description = 'My command';
 
