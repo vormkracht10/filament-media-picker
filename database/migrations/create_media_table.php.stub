@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
+            $table->id();
+            $table->string('disk')->default('public');
+            $table->string('filename');
+            $table->string('uuid);
+            $table->string('extension);
+            $table->string('mime);
+            $table->integer('size');
+            $table-integer('width);
+            $table->integer('height);
+            table->string('checksum');
+            $table->boolean('public');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists(app(config('media-picker.model'))->getTable());
+    }
+};
