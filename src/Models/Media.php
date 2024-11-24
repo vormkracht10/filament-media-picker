@@ -2,9 +2,9 @@
 
 namespace Vormkracht10\MediaPicker\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Media extends Model
 {
@@ -41,7 +41,7 @@ class Media extends Model
     protected function fullPath(): Attribute
     {
         return Attribute::make(
-            get: fn() => Storage::disk($this->disk)->path($this->directory . '/' . $this->name . '.' . $this->extension),
+            get: fn () => Storage::disk($this->disk)->path($this->directory . '/' . $this->name . '.' . $this->extension),
         );
     }
 }

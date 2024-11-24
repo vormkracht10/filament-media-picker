@@ -30,6 +30,6 @@ class EditMedia extends EditRecord
 
     protected function afterSave(): void
     {
-        // 
+        //
     }
 }
