@@ -62,7 +62,7 @@ class MediaPickerServiceProvider extends PackageServiceProvider
     {
         // Allow setting tenant relationship and model
         MediaPickerPlugin::configureTenantUsing(function ($tenantRelationship, $tenantModel) {
-            Config::set('media-picker.tenant_relationship', $tenantRelationship);
+            Config::set('media-picker.tenant_ownership_relationship_name', $tenantRelationship);
             Config::set('media-picker.tenant_model', $tenantModel);
         });
     }

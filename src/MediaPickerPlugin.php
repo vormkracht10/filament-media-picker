@@ -3,8 +3,9 @@
 namespace Vormkracht10\MediaPicker;
 
 use Closure;
-use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Filament\Contracts\Plugin;
+use Illuminate\Support\Facades\Config;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Vormkracht10\MediaPicker\Resources\MediaResource;
 
@@ -31,6 +32,10 @@ class MediaPickerPlugin implements Plugin
     protected string | Closure | null $pluralLabel = null;
 
     protected ?string $resource = null;
+
+    protected string | Closure | null $tenantRelationship = null;
+
+    protected string | Closure | null $tenantModel = null;
 
     public function getId(): string
     {
@@ -166,5 +171,28 @@ class MediaPickerPlugin implements Plugin
         $this->label = $label;
 
         return $this;
+    }
+
+    public function configureTenant(string $relationship, string $model): static
+    {
+        $this->tenantRelationship = $relationship;
+        $this->tenantModel = $model;
+
+        Config::set('media-picker.tenant_relationship', $relationship);
+        Config::set('media-picker.tenant_model', $model);
+
+        return $this;
+    }
+
+    public function getTenantRelationship(): ?string
+    {
+        return $this->evaluate($this->tenantRelationship)
+            ?? config('media-picker.tenant_relationship');
+    }
+
+    public function getTenantModel(): ?string
+    {
+        return $this->evaluate($this->tenantModel)
+            ?? config('media-picker.tenant_model');
     }
 }
