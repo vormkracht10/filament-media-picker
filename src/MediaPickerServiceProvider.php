@@ -18,7 +18,7 @@ use Vormkracht10\MediaPicker\Testing\TestsMediaPicker;
 
 class MediaPickerServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'filament-media-picker';
+    public static string $name = 'media-picker';
 
     public static string $viewNamespace = 'filament-media-picker';
 
@@ -34,7 +34,9 @@ class MediaPickerServiceProvider extends PackageServiceProvider
                     ->askToStarRepoOnGitHub('vormkracht10/filament-media-picker');
             });
 
-        if (file_exists($package->basePath("/../config/media-picker.php"))) {
+        $configFileName = $package->shortName();
+
+        if (file_exists($package->basePath("/../config/{$configFileName}.php"))) {
             $package->hasConfigFile();
         }
 
