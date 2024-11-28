@@ -6,6 +6,7 @@ use Closure;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
+use Vormkracht10\MediaPicker\Resources\MediaResource;
 
 class MediaPickerPlugin implements Plugin
 {
@@ -61,7 +62,7 @@ class MediaPickerPlugin implements Plugin
 
     public function getResource(): string
     {
-        return $this->resource ?? config('media-picker.resources.resource');
+        return $this->resource ?? config('media-picker.resources.resource') ?? MediaResource::class;
     }
 
     public function getLabel(): string
