@@ -30,12 +30,6 @@ You can publish the config file with:
 php artisan vendor:publish --tag="media-picker-config" 
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-media-picker-views"
-```
-
 This is the contents of the published config file:
 
 ```php
