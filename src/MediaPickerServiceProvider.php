@@ -141,7 +141,7 @@ class MediaPickerServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-media_table',
+            'create_media_table',
         ];
     }
 }
