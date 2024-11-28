@@ -3,10 +3,10 @@
 namespace Vormkracht10\MediaPicker;
 
 use Closure;
-use Filament\Panel;
 use Filament\Contracts\Plugin;
-use Illuminate\Support\Facades\Config;
+use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
+use Illuminate\Support\Facades\Config;
 use Vormkracht10\MediaPicker\Resources\MediaResource;
 
 class MediaPickerPlugin implements Plugin
