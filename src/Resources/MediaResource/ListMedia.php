@@ -16,7 +16,7 @@ class ListMedia extends ListRecords
     public function getHeaderActions(): array
     {
         return [
-            CreateAction::make()
+            CreateAction::make(),
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace Vormkracht10\MediaPicker;
 
 use Closure;
-
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;

@@ -2,12 +2,12 @@
 
 namespace Vormkracht10\MediaPicker\Resources;
 
-use Filament\Tables;
+use Filament\Facades\Filament;
 use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Filament\Facades\Filament;
-use Filament\Resources\Resource;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
 
 class MediaResource extends Resource
@@ -59,7 +59,7 @@ class MediaResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        if (!MediaPickerPlugin::get()->getNavigationCountBadge()) {
+        if (! MediaPickerPlugin::get()->getNavigationCountBadge()) {
             return null;
         }
 
@@ -81,7 +81,7 @@ class MediaResource extends Resource
     {
         return $form
             ->schema([
-                // 
+                //
             ]);
     }
 
