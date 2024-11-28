@@ -24,7 +24,7 @@ class MediaResource extends Resource
 
     public static function getTenantOwnershipRelationshipName(): string
     {
-        return config('media-picker.tenant_ownership_relationship_name') ?? Filament::getTenantOwnershipRelationshipName();
+        return config('media-picker.tenant_relationship') ?? Filament::getTenantOwnershipRelationshipName();
     }
 
     public static function getModelLabel(): string
@@ -65,7 +65,7 @@ class MediaResource extends Resource
 
         if (Filament::hasTenancy() && config('media-picker.is_tenant_aware')) {
             return static::getEloquentQuery()
-                ->where(config('media-picker.tenant_ownership_relationship_name') . '_id', Filament::getTenant()->id)
+                ->where(config('media-picker.tenant_relationship') . '_ulid', Filament::getTenant()->id)
                 ->count();
         }
 

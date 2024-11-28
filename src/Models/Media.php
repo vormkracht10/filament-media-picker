@@ -38,7 +38,7 @@ class Media extends Model
                 $currentTenant = app($tenantModel)->current();
 
                 if ($currentTenant) {
-                    $model->{$tenantRelationship . '_id'} = $currentTenant->id;
+                    $model->{$tenantRelationship . '_ulid'} = $currentTenant->id;
                 }
             }
         });
@@ -53,7 +53,7 @@ class Media extends Model
         if ($tenantRelationship && class_exists($tenantModel)) {
             return $this->belongsTo(
                 $tenantModel,
-                $tenantRelationship . '_id'
+                $tenantRelationship . '_ulid'
             );
         }
 
