@@ -20,7 +20,7 @@ composer require vormkracht10/filament-media-picker
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="filament-media-picker-migrations"
+php artisan vendor:publish --tag="media-picker-migrations"
 php artisan migrate
 ```
 
