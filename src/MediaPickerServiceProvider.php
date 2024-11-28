@@ -59,7 +59,7 @@ class MediaPickerServiceProvider extends PackageServiceProvider
     {
         // Asset Registration
         FilamentAsset::register(
-            $this->getAssets(),
+            // $this->getAssets(),
             $this->getAssetPackageName()
         );
 
