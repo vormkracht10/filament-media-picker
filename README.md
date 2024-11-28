@@ -27,7 +27,7 @@ php artisan migrate
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="filament-media-picker-config"
+php artisan vendor:publish --tag="media-picker-config" 
 ```
 
 Optionally, you can publish the views using
