@@ -96,8 +96,8 @@ class MediaPickerServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('filament-media-picker', __DIR__ . '/../resources/dist/components/filament-media-picker.js'),
-            Css::make('filament-media-picker-styles', __DIR__ . '/../resources/dist/filament-media-picker.css'),
-            Js::make('filament-media-picker-scripts', __DIR__ . '/../resources/dist/filament-media-picker.js'),
+            // Css::make('filament-media-picker-styles', __DIR__ . '/../resources/dist/filament-media-picker.css'),
+            // Js::make('filament-media-picker-scripts', __DIR__ . '/../resources/dist/filament-media-picker.js'),
         ];
     }
 
