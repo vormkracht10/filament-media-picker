@@ -34,9 +34,7 @@ class MediaPickerServiceProvider extends PackageServiceProvider
                     ->askToStarRepoOnGitHub('vormkracht10/filament-media-picker');
             });
 
-        $configFileName = $package->shortName();
-
-        if (file_exists($package->basePath("/../config/{$configFileName}.php"))) {
+        if (file_exists($package->basePath("/../config/media-picker.php"))) {
             $package->hasConfigFile();
         }
 
