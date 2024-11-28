@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        if(config('media-picker.is_tenant_aware')) {
+            Schema::table(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
+                $table->integer(config('media-picker.tenant_ownership_relationship_name') . '_ulid')->nullable();
+            });
+        }
+    }
+
+    public function down(): void
+    {
+        if (Schema::hasColumn(app(config('media-picker.model'))->getTable(), config('media-picker.tenant_ownership_relationship_name') . '_ulid')) {
+            Schema::table(app(config('media-picker.model'))->getTable(), function(Blueprint $table) {
+                $table->dropColumn(config('media-picker.tenant_ownership_relationship_name') . '_ulid');
+            });
+        }
+    }
+};
