@@ -57,15 +57,6 @@ class MediaPickerServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void {}
 
-    public function boot(): void
-    {
-        // Allow setting tenant relationship and model
-        MediaPickerPlugin::configureTenantUsing(function ($tenantRelationship, $tenantModel) {
-            Config::set('media-picker.tenant_ownership_relationship_name', $tenantRelationship);
-            Config::set('media-picker.tenant_model', $tenantModel);
-        });
-    }
-
     public function packageBooted(): void
     {
         // Asset Registration
