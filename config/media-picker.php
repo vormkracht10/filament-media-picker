@@ -27,7 +27,7 @@ return [
         'navigation_icon' => 'heroicon-o-photo',
         'navigation_sort' => null,
         'navigation_count_badge' => false,
-        // 'resource' => \Vormkracht10\MediaPicker\Resources\MediaResource::class,
+        'resource' => \Vormkracht10\MediaPicker\Resources\MediaResource::class,
     ],
 
     'should_preserve_filenames' => false,
