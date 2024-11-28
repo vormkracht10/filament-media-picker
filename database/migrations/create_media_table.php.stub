@@ -9,19 +9,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
-            $table->id();
-            $table->string('disk')->default('public');
+            $table->ulid('ulid')->primary();
+            $table->ulidMorphs('model');
+            $table->string('disk')->index();
+            $table->unsignedBigInteger('uploaded_by')->nullable()->index();
             $table->string('filename');
-            $table->string('uuid);
-            $table->string('extension);
-            $table->string('mime);
-            $table->integer('size');
-            $table-integer('width);
-            $table->integer('height);
-            table->string('checksum');
-            $table->boolean('public');
+            $table->string('extension');
+            $table->string('mime_type');
+            $table->unsignedBigInteger('size');
+            $table->unsignedBigInteger('width');
+            $table->unsignedBigInteger('height');
+            $table->string('checksum', 32);
+            $table->boolean('public')->default(true);
+            $table->unsignedBigInteger('position');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('uploaded_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

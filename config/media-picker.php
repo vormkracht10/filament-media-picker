@@ -8,11 +8,17 @@ return [
         'image/svg+xml',
         'application/pdf',
     ],
+
     'directory' => 'media',
+
     'disk' => env('FILAMENT_FILESYSTEM_DISK', 'public'),
+
     'is_tenant_aware' => true,
+
     'tenant_ownership_relationship_name' => 'tenant',
+
     'model' => \Vormkracht10\MediaPicker\Models\Media::class,
+
     'resources' => [
         'label' => 'Media',
         'plural_label' => 'Media',
@@ -23,7 +29,10 @@ return [
         'navigation_count_badge' => false,
         // 'resource' => \Awcodes\Curator\Resources\MediaResource::class,
     ],
+
     'should_preserve_filenames' => false,
+
     'should_register_navigation' => true,
+
     'visibility' => 'public',
 ];
