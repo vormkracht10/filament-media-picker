@@ -16,6 +16,7 @@ return [
     'is_tenant_aware' => true,
 
     'tenant_ownership_relationship_name' => 'tenant',
+    // 'tenant_model' => \App\Models\Tenant::class,
 
     'model' => \Vormkracht10\MediaPicker\Models\Media::class,
 

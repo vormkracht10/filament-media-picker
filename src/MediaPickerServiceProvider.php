@@ -2,19 +2,22 @@
 
 namespace Vormkracht10\MediaPicker;
 
-use Filament\Support\Assets\AlpineComponent;
-use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
-use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Facades\FilamentIcon;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Asset;
 use Illuminate\Filesystem\Filesystem;
-use Livewire\Features\SupportTesting\Testable;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
+use Filament\Support\Facades\FilamentIcon;
+use Vormkracht10\MediaPicker\Models\Media;
+use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Assets\AlpineComponent;
+use Livewire\Features\SupportTesting\Testable;
+use Vormkracht10\MediaPicker\MediaPickerPlugin;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Vormkracht10\MediaPicker\Commands\MediaPickerCommand;
 use Vormkracht10\MediaPicker\Testing\TestsMediaPicker;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Vormkracht10\MediaPicker\Commands\MediaPickerCommand;
 
 class MediaPickerServiceProvider extends PackageServiceProvider
 {
@@ -54,6 +57,15 @@ class MediaPickerServiceProvider extends PackageServiceProvider
     }
 
     public function packageRegistered(): void {}
+
+    public function boot(): void
+    {
+        // Allow setting tenant relationship and model
+        MediaPickerPlugin::configureTenantUsing(function ($tenantRelationship, $tenantModel) {
+            Config::set('media-picker.tenant_relationship', $tenantRelationship);
+            Config::set('media-picker.tenant_model', $tenantModel);
+        });
+    }
 
     public function packageBooted(): void
     {
