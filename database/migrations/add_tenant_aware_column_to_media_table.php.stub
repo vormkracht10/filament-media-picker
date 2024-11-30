@@ -10,14 +10,14 @@ return new class extends Migration
     {
         if (config('media-picker.is_tenant_aware')) {
             Schema::table(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
-                $table->ulid(app(config('media-picker.tenant_relationship')) . '_ulid')->nullable();
+                $table->ulid(config('media-picker.tenant_relationship') . '_ulid')->nullable();
             });
         }
     }
 
     public function down(): void
     {
-        if (Schema::hasColumn(app(config('media-picker.model'))->getTable(), app(config('media-picker.tenant_relationship')) . '_ulid')) {
+        if (Schema::hasColumn(app(config('media-picker.model'))->getTable(), config('media-picker.tenant_relationship') . '_ulid')) {
             Schema::table(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
                 $table->dropColumn(config('media-picker.tenant_relationship') . '_ulid');
             });
