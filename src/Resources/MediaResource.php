@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
@@ -103,7 +105,7 @@ class MediaResource extends Resource
                             ->label(__('Model Type'))
                             ->options(function () {
                                 return collect(config('media-picker.file_upload.models'))
-                                    ->mapWithKeys(fn ($model) => [$model => class_basename($model)])
+                                    ->mapWithKeys(fn($model) => [$model => class_basename($model)])
                                     ->toArray();
                             })
                             ->columnSpan(1)
@@ -121,7 +123,7 @@ class MediaResource extends Resource
                                 return $selectedModelType::all()->pluck('name', 'id');
                             })
                             ->columnSpan(1)
-                            ->disabled(fn (Get $get) => ! $get('model_type')),
+                            ->disabled(fn(Get $get) => ! $get('model_type')),
                     ]),
             ]);
     }
@@ -130,7 +132,23 @@ class MediaResource extends Resource
     {
         return $table
             ->columns([
-                // ...
+                TextColumn::make('filename')
+                    ->label(__('Filename'))
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('model') // TODO: Implement model column
+                    ->label(__('Model'))
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('extension')
+                    ->label(__('Extension'))
+                    ->searchable()
+                    ->sortable(),
+                IconColumn::make('public')
+                    ->boolean()
+                    ->label(__('Public'))
+                    ->sortable(),
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
