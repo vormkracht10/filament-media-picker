@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('extension');
             $table->string('mime_type');
             $table->unsignedBigInteger('size');
-            $table->unsignedBigInteger('width');
-            $table->unsignedBigInteger('height');
+            $table->unsignedBigInteger('width')->nullable();
+            $table->unsignedBigInteger('height')->nullable();
             $table->string('checksum', 32);
             $table->boolean('public')->default(true);
             $table->unsignedBigInteger('position');
