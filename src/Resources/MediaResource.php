@@ -2,12 +2,13 @@
 
 namespace Vormkracht10\MediaPicker\Resources;
 
-use Filament\Facades\Filament;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Filament\Facades\Filament;
+use Filament\Resources\Resource;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
 
 class MediaResource extends Resource
@@ -81,7 +82,43 @@ class MediaResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Section::make('Media Details')
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\FileUpload::make('media')
+                            ->label(__('File(s)'))
+                            ->disk(config('media-picker.disk'))
+                            ->directory(config('media-picker.directory'))
+                            ->shouldPreserveFilename(config('media-picker.should_preserve_filenames'))
+                            ->visibility(config('media-picker.visibility'))
+                            ->acceptedFileTypes(config('media-picker.accepted_file_types'))
+                            ->required()
+                            ->columnSpanFull(),
+
+                        Forms\Components\Select::make('model_type')
+                            ->label(__('Model Type'))
+                            ->options(function () {
+                                return collect(config('media-picker.file_upload.models'))
+                                    ->mapWithKeys(fn($model) => [$model => $model::getLabel()])
+                                    ->toArray();
+                            })
+                            ->columnSpan(1)
+                            ->live(), // Add live() to make it reactive
+
+                        Forms\Components\Select::make('model_id')
+                            ->label(__('Model'))
+                            ->options(function (Get $get) {
+                                $selectedModelType = $get('model_type');
+
+                                if (!$selectedModelType) {
+                                    return [];
+                                }
+
+                                return $selectedModelType::all()->pluck('name', 'id');
+                            })
+                            ->columnSpan(1)
+                            ->disabled(fn(Get $get) => !$get('model_type')), // Disable until model type is selected
+                    ]),
             ]);
     }
 

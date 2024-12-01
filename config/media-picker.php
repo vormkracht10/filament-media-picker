@@ -1,6 +1,12 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | File upload
+    |--------------------------------------------------------------------------
+    |
+    */
     'accepted_file_types' => [
         'image/jpeg',
         'image/png',
@@ -13,12 +19,29 @@ return [
 
     'disk' => env('FILAMENT_FILESYSTEM_DISK', 'public'),
 
-    'is_tenant_aware' => true,
+    'should_preserve_filenames' => false,
 
+    'should_register_navigation' => true,
+
+    'visibility' => 'public',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tenancy 
+    |--------------------------------------------------------------------------
+    |
+    */
+    'is_tenant_aware' => true,
     'tenant_ownership_relationship_name' => 'tenant',
     'tenant_relationship' => 'tenant',
     // 'tenant_model' => \App\Models\Tenant::class,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Model and resource
+    |--------------------------------------------------------------------------
+    |
+    */
     'model' => \Vormkracht10\MediaPicker\Models\Media::class,
 
     'resources' => [
@@ -32,9 +55,10 @@ return [
         'resource' => \Vormkracht10\MediaPicker\Resources\MediaResource::class,
     ],
 
-    'should_preserve_filenames' => false,
-
-    'should_register_navigation' => true,
-
-    'visibility' => 'public',
+    'file_upload' => [
+        'models' => [
+            // App\Models\User::class,
+            // App\Models\Blog::class,
+        ]
+    ],
 ];
