@@ -2,16 +2,16 @@
 
 namespace Vormkracht10\MediaPicker\Resources;
 
-use Filament\Tables;
-use Filament\Forms\Get;
+use Filament\Facades\Filament;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Resources\Resource;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Filament\Facades\Filament;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\FileUpload;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
 
 class MediaResource extends Resource
@@ -103,7 +103,7 @@ class MediaResource extends Resource
                             ->label(__('Model Type'))
                             ->options(function () {
                                 return collect(config('media-picker.file_upload.models'))
-                                    ->mapWithKeys(fn($model) => [$model => class_basename($model)])
+                                    ->mapWithKeys(fn ($model) => [$model => class_basename($model)])
                                     ->toArray();
                             })
                             ->columnSpan(1)
@@ -121,7 +121,7 @@ class MediaResource extends Resource
                                 return $selectedModelType::all()->pluck('name', 'id');
                             })
                             ->columnSpan(1)
-                            ->disabled(fn(Get $get) => ! $get('model_type')),
+                            ->disabled(fn (Get $get) => ! $get('model_type')),
                     ]),
             ]);
     }
