@@ -10,7 +10,7 @@ return new class extends Migration
     {
         if (config('media-picker.is_tenant_aware')) {
             Schema::table(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
-                $table->ulid(config('media-picker.tenant_relationship') . '_ulid')->nullable();
+                $table->ulid(config('media-picker.tenant_relationship') . '_ulid')->nullable()->after('ulid');
             });
         }
     }
