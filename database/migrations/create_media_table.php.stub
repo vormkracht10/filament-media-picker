@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
             $table->ulid('ulid')->primary();
-            $table->ulidMorphs('model')->nullable();
+            $table->nullableUlidMorphs('model');
             $table->string('disk')->index();
             $table->unsignedBigInteger('uploaded_by')->nullable()->index();
             $table->string('filename');
