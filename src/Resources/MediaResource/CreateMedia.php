@@ -3,11 +3,11 @@
 namespace Vormkracht10\MediaPicker\Resources\MediaResource;
 
 use Filament\Facades\Filament;
+use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Filament\Resources\Pages\CreateRecord;
-use Vormkracht10\MediaPicker\Models\Media;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
+use Vormkracht10\MediaPicker\Models\Media;
 
 class CreateMedia extends CreateRecord
 {
