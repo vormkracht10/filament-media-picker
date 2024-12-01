@@ -95,6 +95,7 @@ class MediaResource extends Resource
                             ->preserveFilenames(config('media-picker.should_preserve_filenames'))
                             ->visibility(config('media-picker.visibility'))
                             ->acceptedFileTypes(config('media-picker.accepted_file_types'))
+                            ->multiple()
                             ->required()
                             ->columnSpanFull(),
 

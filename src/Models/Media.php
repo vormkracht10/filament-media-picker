@@ -2,6 +2,7 @@
 
 namespace Vormkracht10\MediaPicker\Models;
 
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,10 +36,10 @@ class Media extends Model
             $tenantModel = Config::get('media-picker.tenant_model');
 
             if ($tenantRelationship && class_exists($tenantModel)) {
-                $currentTenant = app($tenantModel)->current();
+                $currentTenant = Filament::getTenant();
 
                 if ($currentTenant) {
-                    $model->{$tenantRelationship . '_ulid'} = $currentTenant->id;
+                    $model->{$tenantRelationship . '_ulid'} = $currentTenant->ulid;
                 }
             }
         });
