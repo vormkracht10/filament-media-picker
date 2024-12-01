@@ -2,13 +2,16 @@
 
 namespace Vormkracht10\MediaPicker\Resources;
 
-use Filament\Facades\Filament;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Filament\Facades\Filament;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\FileUpload;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
 
 class MediaResource extends Resource
@@ -82,10 +85,10 @@ class MediaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Media Details')
+                Section::make('Media Details')
                     ->columns(2)
                     ->schema([
-                        Forms\Components\FileUpload::make('media')
+                        FileUpload::make('media')
                             ->label(__('File(s)'))
                             ->disk(config('media-picker.disk'))
                             ->directory(config('media-picker.directory'))
@@ -95,17 +98,17 @@ class MediaResource extends Resource
                             ->required()
                             ->columnSpanFull(),
 
-                        Forms\Components\Select::make('model_type')
+                        Select::make('model_type')
                             ->label(__('Model Type'))
                             ->options(function () {
                                 return collect(config('media-picker.file_upload.models'))
-                                    ->mapWithKeys(fn ($model) => [$model => $model::getLabel()])
+                                    ->mapWithKeys(fn($model) => [$model => $model::getLabel()])
                                     ->toArray();
                             })
                             ->columnSpan(1)
                             ->live(), // Add live() to make it reactive
 
-                        Forms\Components\Select::make('model_id')
+                        Select::make('model_id')
                             ->label(__('Model'))
                             ->options(function (Get $get) {
                                 $selectedModelType = $get('model_type');
@@ -117,7 +120,7 @@ class MediaResource extends Resource
                                 return $selectedModelType::all()->pluck('name', 'id');
                             })
                             ->columnSpan(1)
-                            ->disabled(fn (Get $get) => ! $get('model_type')), // Disable until model type is selected
+                            ->disabled(fn(Get $get) => ! $get('model_type')), // Disable until model type is selected
                     ]),
             ]);
     }
