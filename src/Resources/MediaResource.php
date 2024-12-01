@@ -85,14 +85,14 @@ class MediaResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Media Details')
+                Section::make('')
                     ->columns(2)
                     ->schema([
                         FileUpload::make('media')
                             ->label(__('File(s)'))
                             ->disk(config('media-picker.disk'))
                             ->directory(config('media-picker.directory'))
-                            ->shouldPreserveFilename(config('media-picker.should_preserve_filenames'))
+                            ->preserveFilenames(config('media-picker.should_preserve_filenames'))
                             ->visibility(config('media-picker.visibility'))
                             ->acceptedFileTypes(config('media-picker.accepted_file_types'))
                             ->required()
@@ -102,11 +102,11 @@ class MediaResource extends Resource
                             ->label(__('Model Type'))
                             ->options(function () {
                                 return collect(config('media-picker.file_upload.models'))
-                                    ->mapWithKeys(fn($model) => [$model => $model::getLabel()])
+                                    ->mapWithKeys(fn($model) => [$model => class_basename($model)])
                                     ->toArray();
                             })
                             ->columnSpan(1)
-                            ->live(), // Add live() to make it reactive
+                            ->live(),
 
                         Select::make('model_id')
                             ->label(__('Model'))
@@ -120,7 +120,7 @@ class MediaResource extends Resource
                                 return $selectedModelType::all()->pluck('name', 'id');
                             })
                             ->columnSpan(1)
-                            ->disabled(fn(Get $get) => ! $get('model_type')), // Disable until model type is selected
+                            ->disabled(fn(Get $get) => ! $get('model_type')),
                     ]),
             ]);
     }
