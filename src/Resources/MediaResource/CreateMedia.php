@@ -3,10 +3,11 @@
 namespace Vormkracht10\MediaPicker\Resources\MediaResource;
 
 use Filament\Facades\Filament;
-use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Vormkracht10\MediaPicker\MediaPickerPlugin;
+use Filament\Resources\Pages\CreateRecord;
 use Vormkracht10\MediaPicker\Models\Media;
+use Vormkracht10\MediaPicker\MediaPickerPlugin;
 
 class CreateMedia extends CreateRecord
 {
@@ -15,7 +16,7 @@ class CreateMedia extends CreateRecord
         return MediaPickerPlugin::get()->getResource();
     }
 
-    protected function mutateFormDataBeforeCreate(array $data): array
+    protected function handleRecordCreation(array $data): Model
     {
         foreach ($data['media'] as $file) {
             // Get the full path on the configured disk
@@ -51,7 +52,7 @@ class CreateMedia extends CreateRecord
                 }
             }
 
-            Media::create([
+            $first = Media::create([
                 'site_ulid' => Filament::getTenant()->ulid,
                 'model_type' => $data['model_type'] ?? null,
                 'model_id' => $data['model_id'] ?? null,
@@ -69,8 +70,7 @@ class CreateMedia extends CreateRecord
             ]);
         }
 
-        return [];
-
-        return $data;
+        return $first;
+        // return static::getModel()::create($data);
     }
 }
