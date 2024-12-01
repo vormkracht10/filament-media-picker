@@ -151,8 +151,10 @@ class MediaResource extends Resource
 
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                // Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->hiddenLabel()
+                    ->tooltip(__('Delete')),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
