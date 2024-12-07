@@ -14,6 +14,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Vormkracht10\MediaPicker\Components\MediaPicker;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
 
 class MediaResource extends Resource
@@ -90,16 +91,7 @@ class MediaResource extends Resource
                 Section::make('')
                     ->columns(2)
                     ->schema([
-                        FileUpload::make('media')
-                            ->label(__('File(s)'))
-                            ->disk(config('media-picker.disk'))
-                            ->directory(config('media-picker.directory'))
-                            ->preserveFilenames(config('media-picker.should_preserve_filenames'))
-                            ->visibility(config('media-picker.visibility'))
-                            ->acceptedFileTypes(config('media-picker.accepted_file_types'))
-                            ->multiple()
-                            ->required()
-                            ->columnSpanFull(),
+                        MediaPicker::make(),
 
                         Select::make('model_type')
                             ->label(__('Model Type'))

@@ -139,6 +139,17 @@ $model->attachMedia($mediaUlid, [
 ]);
 ```
 
+### Media Picker component
+
+You can use the `MediaPicker` component in your forms to add a media picker to your Filament forms. The `MediaPicker` component is a `FileUpload` field that respects the `media-picker` config file.
+
+```php
+use Vormkracht10\MediaPicker\Components\MediaPicker;
+
+MediaPicker::make('media'),
+
+```
+
 ## Testing
 
 ```bash
