@@ -29,6 +29,8 @@ class Media extends Model
         'height' => 'integer',
         'size' => 'integer',
         'public' => 'boolean',
+        'created_at' => 'datetime:d-m-Y H:i',
+        'updated_at' => 'datetime:d-m-Y H:i',
     ];
 
     protected $appends = [
