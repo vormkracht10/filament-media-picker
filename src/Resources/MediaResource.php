@@ -123,7 +123,7 @@ class MediaResource extends Resource
 
                                 return $selectedModelType::all()->pluck('name', 'id');
                             })
-                            ->visible(count(config('media-picker.file_upload.models') ?? []) > 1)
+                            ->visible(count(config('media-picker.file_upload.models') ?? []) > 0)
                             ->columnSpan(1)
                             ->disabled(fn(Get $get) => ! $get('model_type')),
                     ]),
