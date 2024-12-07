@@ -10,22 +10,26 @@ return new class extends Migration
     {
         Schema::create(app(config('media-picker.model'))->getTable(), function (Blueprint $table) {
             $table->ulid('ulid')->primary();
-            $table->nullableUlidMorphs('model');
+            
             $table->string('disk')->index();
-            $table->unsignedBigInteger('uploaded_by')->nullable()->index();
+            $table->foreignId('uploaded_by')->nullable()->index()
+                ->constrained('users')
+                ->nullOnDelete();
+            
             $table->string('filename');
             $table->string('extension');
             $table->string('mime_type');
             $table->unsignedBigInteger('size');
-            $table->unsignedBigInteger('width')->nullable();
-            $table->unsignedBigInteger('height')->nullable();
-            $table->string('checksum', 32);
+            
+            // Nullable dimensions for non-image files
+            $table->unsignedInteger('width')->nullable();
+            $table->unsignedInteger('height')->nullable();
+            
+            $table->string('checksum', 64)->index();
             $table->boolean('public')->default(true);
-            $table->unsignedBigInteger('position');
+            
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('uploaded_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

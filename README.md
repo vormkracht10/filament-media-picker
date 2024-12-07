@@ -28,7 +28,7 @@ php artisan vendor:publish --tag="media-picker-migrations"
 ```
 
 > [!NOTE]
-> Make sure to run the migrations **after** publishing them. This will create the media table in your database with the correct columns.
+> When you are making use of tenancy, make sure to run the migrations **after** configuring the package using the config file. This will create the media table in your database with the correct columns.
 
 You can publish the config file with:
 
@@ -124,6 +124,20 @@ If you are using tenancy, you can set the `is_tenant_aware` config option to `tr
 ### File upload
 
 If you want to be able to setup a relationship between a model and a media file, you can add the model to the `models` array in the `file_upload` config option. This will add a select field to the media form that allows you to select the model that the media file belongs to. You can then use the `Vormkracht10\MediaPicker\Traits\HasMedia` trait on the model to setup the relationship.
+
+### Manually define the relationship between a model and a media file
+
+Use the `Vormkracht10\MediaPicker\Traits\HasMedia` trait on the model to setup the relationship between the model and the media file. You can then use the following methods to define the relationship:
+
+```php
+$model->attachMedia($mediaUlid);
+
+// or with meta data
+$model->attachMedia($mediaUlid, [
+    'position' => 1,
+    'meta' => ['description' => 'Profile picture']
+]);
+```
 
 ## Testing
 

@@ -6,6 +6,7 @@ use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +17,10 @@ class Media extends Model
     use SoftDeletes;
 
     protected $primaryKey = 'ulid';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
 
     protected $guarded = [];
 
@@ -34,6 +39,22 @@ class Media extends Model
     public function getRouteKeyName(): string
     {
         return 'ulid';
+    }
+
+    /**
+     * Get all models this media is attached to.
+     *
+     * @return MorphToMany
+     */
+    public function models(): MorphToMany
+    {
+        return $this->morphedByMany(
+            config('media-picker.model_namespace', 'App\Models'),
+            'model',
+            'media_relationships',
+            'media_ulid',
+            'model_id'
+        )->withPivot('position', 'meta');
     }
 
     protected static function booted(): void

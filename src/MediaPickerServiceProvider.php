@@ -148,6 +148,7 @@ class MediaPickerServiceProvider extends PackageServiceProvider
     {
         return [
             'create_media_table',
+            'create_media_relationships_table',
             'add_tenant_aware_column_to_media_table',
         ];
     }
