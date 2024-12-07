@@ -4,14 +4,11 @@ namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Collection;
 
 trait HasMedia
 {
     /**
      * Get all media associated with the model.
-     *
-     * @return MorphToMany
      */
     public function media(): MorphToMany
     {
@@ -28,9 +25,8 @@ trait HasMedia
     /**
      * Attach media to the model.
      *
-     * @param string|array|\Illuminate\Support\Collection $media
-     * @param array $options Additional options for attachment
-     * @return self
+     * @param  string|array|\Illuminate\Support\Collection  $media
+     * @param  array  $options  Additional options for attachment
      */
     public function attachMedia($media, array $options = []): self
     {
@@ -59,8 +55,7 @@ trait HasMedia
     /**
      * Detach media from the model.
      *
-     * @param string|array|\Illuminate\Support\Collection $media
-     * @return self
+     * @param  string|array|\Illuminate\Support\Collection  $media
      */
     public function detachMedia($media): self
     {
@@ -80,9 +75,8 @@ trait HasMedia
     /**
      * Sync media attachments.
      *
-     * @param string|array|\Illuminate\Support\Collection $media
-     * @param array $options Sync options
-     * @return self
+     * @param  string|array|\Illuminate\Support\Collection  $media
+     * @param  array  $options  Sync options
      */
     public function syncMedia($media, array $options = []): self
     {
@@ -109,8 +103,6 @@ trait HasMedia
 
     /**
      * Check if the model has any media attached.
-     *
-     * @return bool
      */
     public function hasMedia(): bool
     {

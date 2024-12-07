@@ -105,7 +105,7 @@ class MediaResource extends Resource
                             ->label(__('Model Type'))
                             ->options(function () {
                                 return collect(config('media-picker.file_upload.models'))
-                                    ->mapWithKeys(fn($model) => [$model => class_basename($model)])
+                                    ->mapWithKeys(fn ($model) => [$model => class_basename($model)])
                                     ->toArray();
                             })
                             ->visible(count(config('media-picker.file_upload.models') ?? []) > 0)
@@ -125,7 +125,7 @@ class MediaResource extends Resource
                             })
                             ->visible(count(config('media-picker.file_upload.models') ?? []) > 0)
                             ->columnSpan(1)
-                            ->disabled(fn(Get $get) => ! $get('model_type')),
+                            ->disabled(fn (Get $get) => ! $get('model_type')),
                     ]),
             ]);
     }

@@ -43,8 +43,6 @@ class Media extends Model
 
     /**
      * Get all models this media is attached to.
-     *
-     * @return MorphToMany
      */
     public function models(): MorphToMany
     {
