@@ -81,6 +81,8 @@ class Library extends Page implements HasForms
                         ->success()
                         ->send();
                 })
+                ->modalSubmitActionLabel(__('Upload'))
+                ->color('primary')
                 ->modal()
                 ->icon('heroicon-o-arrow-up-tray'),
         ];
