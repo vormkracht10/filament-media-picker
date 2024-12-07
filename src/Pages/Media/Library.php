@@ -2,17 +2,17 @@
 
 namespace Vormkracht10\MediaPicker\Pages\Media;
 
-use Filament\Forms\Form;
-use Filament\Pages\Page;
-use Illuminate\Support\Str;
 use Filament\Actions\Action;
-use Livewire\WithPagination;
-use Illuminate\Support\Collection;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
-use Vormkracht10\MediaPicker\Models\Media;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Pages\Page;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Livewire\WithPagination;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
+use Vormkracht10\MediaPicker\Models\Media;
 use Vormkracht10\MediaPicker\Resources\MediaResource;
 use Vormkracht10\MediaPicker\Resources\MediaResource\CreateMedia;
 
@@ -70,7 +70,7 @@ class Library extends Page implements HasForms
                     return MediaResource::form($form);
                 })
                 ->action(function (array $data) {
-                    $createMedia = new CreateMedia();
+                    $createMedia = new CreateMedia;
                     $createMedia->handleRecordCreation($data);
 
                     $this->loadMedia();
@@ -81,7 +81,7 @@ class Library extends Page implements HasForms
                         ->send();
                 })
                 ->modal()
-                ->icon('heroicon-o-arrow-up-tray')
+                ->icon('heroicon-o-arrow-up-tray'),
         ];
     }
 
@@ -120,6 +120,7 @@ class Library extends Page implements HasForms
             ->label(__('Show'))
             ->modalContent(function (array $arguments) {
                 $this->setMedia($arguments['ulid']);
+
                 return view('filament-media-picker::pages.media.overlay', [
                     'media' => $this->selectedMedia,
                 ]);
