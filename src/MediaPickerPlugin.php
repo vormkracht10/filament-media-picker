@@ -7,11 +7,14 @@ use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Illuminate\Support\Facades\Config;
+use Vormkracht10\MediaPicker\Models\Media;
 use Vormkracht10\MediaPicker\Resources\MediaResource;
 
 class MediaPickerPlugin implements Plugin
 {
     use EvaluatesClosures;
+
+    protected string $modelItem = Media::class;
 
     protected string | Closure | null $label = null;
 
@@ -194,5 +197,20 @@ class MediaPickerPlugin implements Plugin
     {
         return $this->evaluate($this->tenantModel)
             ?? config('media-picker.tenant_model');
+    }
+
+    /**
+     * @return class-string<MediaLibraryItem>
+     */
+    public function getModelItem(): string
+    {
+        return $this->modelItem;
+    }
+
+    public function modelItem(string $className): static
+    {
+        $this->modelItem = $className;
+
+        return $this;
     }
 }

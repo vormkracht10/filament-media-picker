@@ -16,7 +16,7 @@ class CreateMedia extends CreateRecord
         return MediaPickerPlugin::get()->getResource();
     }
 
-    protected function handleRecordCreation(array $data): Model
+    public function handleRecordCreation(array $data): Model
     {
         foreach ($data['media'] as $file) {
             // Get the full path on the configured disk

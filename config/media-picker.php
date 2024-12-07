@@ -44,6 +44,8 @@ return [
     */
     'model' => \Vormkracht10\MediaPicker\Models\Media::class,
 
+    // 'user_model' => \App\Models\User::class,
+
     'resources' => [
         'label' => 'Media',
         'plural_label' => 'Media',

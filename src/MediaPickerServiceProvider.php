@@ -2,20 +2,21 @@
 
 namespace Vormkracht10\MediaPicker;
 
-use Filament\Support\Assets\AlpineComponent;
-use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
-use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Facades\FilamentIcon;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Asset;
 use Illuminate\Filesystem\Filesystem;
-use Livewire\Features\SupportTesting\Testable;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Vormkracht10\MediaPicker\Commands\MediaPickerCommand;
+use Filament\Support\Facades\FilamentIcon;
 use Vormkracht10\MediaPicker\Models\Media;
+use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Assets\AlpineComponent;
+use Livewire\Features\SupportTesting\Testable;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Vormkracht10\MediaPicker\Testing\TestsMediaPicker;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Vormkracht10\MediaPicker\Commands\MediaPickerCommand;
 
 class MediaPickerServiceProvider extends PackageServiceProvider
 {
@@ -81,6 +82,10 @@ class MediaPickerServiceProvider extends PackageServiceProvider
             }
         }
 
+        Relation::enforceMorphMap([
+            'media' => 'Vormkracht10\MediaPicker\Models\Media',
+        ]);
+
         // Testing
         Testable::mixin(new TestsMediaPicker);
     }
@@ -97,8 +102,8 @@ class MediaPickerServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('filament-media-picker', __DIR__ . '/../resources/dist/components/filament-media-picker.js'),
-            // Css::make('filament-media-picker-styles', __DIR__ . '/../resources/dist/filament-media-picker.css'),
-            // Js::make('filament-media-picker-scripts', __DIR__ . '/../resources/dist/filament-media-picker.js'),
+            Css::make('filament-media-picker-styles', __DIR__ . '/../resources/dist/filament-media-picker.css'),
+            Js::make('filament-media-picker-scripts', __DIR__ . '/../resources/dist/filament-media-picker.js'),
         ];
     }
 
