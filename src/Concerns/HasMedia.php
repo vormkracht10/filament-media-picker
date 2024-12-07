@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace Vormkracht10\MediaPicker\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
