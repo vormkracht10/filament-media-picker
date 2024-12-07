@@ -97,10 +97,6 @@ class MediaResource extends Resource
                     ->label(__('Filename'))
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('model') // TODO: Implement model column
-                    ->label(__('Model'))
-                    ->searchable()
-                    ->sortable(),
                 TextColumn::make('extension')
                     ->label(__('Extension'))
                     ->searchable()
@@ -112,7 +108,6 @@ class MediaResource extends Resource
 
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
                     ->hiddenLabel()
                     ->tooltip(__('Delete')),
