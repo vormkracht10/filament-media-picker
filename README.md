@@ -79,13 +79,6 @@ return [
         'navigation_count_badge' => false,
         'resource' => \Vormkracht10\MediaPicker\Resources\MediaResource::class,
     ],
-
-    'file_upload' => [
-        'models' => [
-            // App\Models\User::class,
-            // App\Models\Blog::class,
-        ],
-    ],
 ];
 ```
 
@@ -121,13 +114,9 @@ public function panel(Panel $panel): Panel
 
 If you are using tenancy, you can set the `is_tenant_aware` config option to `true` and set the `tenant_ownership_relationship_name` and `tenant_relationship` config options to the names of the relationships on the media model and the tenant model, respectively. You can also set the `tenant_model` config option to the fully qualified class name of the tenant model.
 
-### File upload
+### File upload (with relationship)
 
-If you want to be able to setup a relationship between a model and a media file, you can add the model to the `models` array in the `file_upload` config option. This will add a select field to the media form that allows you to select the model that the media file belongs to. You can then use the `Vormkracht10\MediaPicker\Concerns\HasMedia` trait on the model to setup the relationship.
-
-### Manually define the relationship between a model and a media file
-
-Use the `Vormkracht10\MediaPicker\Concerns\HasMedia` trait on the model to setup the relationship between the model and the media file. You can then use the following methods to define the relationship:
+If you want to be able to setup a relationship between a model and a media file, you can add the `Vormkracht10\MediaPicker\Concerns\HasMedia` trait on the model to easily attach a media file to the model. You can then use the following methods to define the relationship:
 
 ```php
 $model->attachMedia($mediaUlid);

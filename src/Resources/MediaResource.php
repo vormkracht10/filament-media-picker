@@ -92,32 +92,6 @@ class MediaResource extends Resource
                     ->schema([
                         MediaPicker::make()
                             ->required(),
-
-                        Select::make('model_type')
-                            ->label(__('Model Type'))
-                            ->options(function () {
-                                return collect(config('media-picker.file_upload.models'))
-                                    ->mapWithKeys(fn ($model) => [$model => class_basename($model)])
-                                    ->toArray();
-                            })
-                            ->visible(count(config('media-picker.file_upload.models') ?? []) > 0)
-                            ->columnSpan(1)
-                            ->live(),
-
-                        Select::make('model_id')
-                            ->label(__('Model'))
-                            ->options(function (Get $get) {
-                                $selectedModelType = $get('model_type');
-
-                                if (! $selectedModelType) {
-                                    return [];
-                                }
-
-                                return $selectedModelType::all()->pluck('name', 'id');
-                            })
-                            ->visible(count(config('media-picker.file_upload.models') ?? []) > 0)
-                            ->columnSpan(1)
-                            ->disabled(fn (Get $get) => ! $get('model_type')),
                     ]),
             ]);
     }

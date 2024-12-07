@@ -56,11 +56,4 @@ return [
         'navigation_count_badge' => false,
         'resource' => \Vormkracht10\MediaPicker\Resources\MediaResource::class,
     ],
-
-    'file_upload' => [
-        'models' => [
-            // App\Models\User::class,
-            // App\Models\Blog::class,
-        ],
-    ],
 ];
