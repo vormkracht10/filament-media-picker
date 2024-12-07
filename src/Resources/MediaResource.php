@@ -4,9 +4,7 @@ namespace Vormkracht10\MediaPicker\Resources;
 
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
