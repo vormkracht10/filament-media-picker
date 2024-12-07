@@ -16,7 +16,6 @@ class MediaPicker extends FileUpload
             ->visibility(config('media-picker.visibility'))
             ->acceptedFileTypes(config('media-picker.accepted_file_types'))
             ->multiple()
-            ->required()
             ->columnSpanFull();
     }
 }
