@@ -89,6 +89,32 @@ return [
 ];
 ```
 
+After publishing the config file and running the migrations you should add the following code to your `PanelServiceProvider` to include the media picker in your Filament application:
+
+```php
+
+use Filament\Support\Assets\Css;
+use Vormkracht10\MediaPicker\MediaPicker;
+use Filament\Support\Facades\FilamentAsset;
+
+public function panel(Panel $panel): Panel
+{
+    // ...
+
+    FilamentAsset::register([
+        Css::make('filament-media-picker', __DIR__ . '/../vendor/vormkracht10/filament-media-picker/resources/css/filament-media-picker.css'),
+    ], package: 'vormkracht10/filament-media-picker');
+
+    // ...
+
+    return $panel
+        ->plugins([
+            MediaPickerPlugin::make()
+                ->configureTenant('site', Site::class), // Optional
+        ]);
+}
+```
+
 ## Usage
 
 ### Tenancy
