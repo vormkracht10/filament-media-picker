@@ -117,7 +117,7 @@ class Library extends Page implements HasForms
     public function showMediaAction(): Action
     {
         return Action::make('showMedia')
-            ->label(__('Show'))
+            ->label(__('File details'))
             ->modalContent(function (array $arguments) {
                 $this->setMedia($arguments['ulid']);
 
