@@ -173,8 +173,6 @@ protected function afterCreate(): void
 
     $media = MediaPicker::create($this->data);
 
-    unset($data['media']);
-
     foreach ($media as $value) {
         $this->getRecord()->attachMedia($value->ulid);
     }
