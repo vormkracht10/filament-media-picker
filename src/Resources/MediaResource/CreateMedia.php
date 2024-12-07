@@ -54,8 +54,6 @@ class CreateMedia extends CreateRecord
 
             $first = Media::create([
                 'site_ulid' => Filament::getTenant()->ulid,
-                'model_type' => $data['model_type'] ?? null,
-                'model_id' => $data['model_id'] ?? null,
                 'disk' => config('media-picker.disk'),
                 'uploaded_by' => auth()->id(),
                 'filename' => $filename,
