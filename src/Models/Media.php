@@ -73,7 +73,7 @@ class Media extends Model
 
     public function user(): ?BelongsTo
     {
-        return $this->belongsTo(Config::get('media-picker.user_model'));
+        return $this->belongsTo(Config::get('media-picker.user_model'), 'uploaded_by');
     }
 
     public function tenant(): ?BelongsTo
