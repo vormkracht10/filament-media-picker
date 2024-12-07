@@ -147,7 +147,66 @@ You can use the `MediaPicker` component in your forms to add a media picker to y
 use Vormkracht10\MediaPicker\Components\MediaPicker;
 
 MediaPicker::make('media'),
+```
 
+### Handle record creation
+
+To handle the creation of a record with a media file, you can use the `Vormkracht10\MediaPicker\MediaPicker` class to handle the file upload and attach the media file to the record.
+
+#### Creating resources
+
+```php
+use Vormkracht10\MediaPicker\MediaPicker;
+
+protected function mutateFormDataBeforeCreate(array $data): array
+{
+    unset($data['media']);
+
+    // ...
+
+    return $data;
+}
+
+protected function afterCreate(): void
+{
+    // ...
+
+    $media = MediaPicker::create($this->data);
+
+    unset($data['media']);
+
+    foreach ($media as $value) {
+        $this->getRecord()->attachMedia($value->ulid);
+    }
+}
+```
+
+#### Editing resources
+
+```php
+use Vormkracht10\MediaPicker\MediaPicker;
+
+protected function mutateFormDataBeforeFill(array $data): array
+{
+    $data['media'] = $this->getRecord()->media->map(function ($media) {
+        return 'media/' . $media->filename;
+    })->toArray();
+
+    return $data;
+}
+
+protected function mutateFormDataBeforeSave(array $data): array
+{
+    $media = MediaPicker::create($data);
+
+    unset($data['media']);
+
+    foreach ($media as $value) {
+        $this->getRecord()->attachMedia($value->ulid);
+    }
+
+    return $data;
+}
 ```
 
 ## Testing
