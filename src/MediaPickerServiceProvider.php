@@ -2,21 +2,21 @@
 
 namespace Vormkracht10\MediaPicker;
 
-use Filament\Support\Assets\Js;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Asset;
-use Illuminate\Filesystem\Filesystem;
-use Spatie\LaravelPackageTools\Package;
-use Filament\Support\Facades\FilamentIcon;
-use Vormkracht10\MediaPicker\Models\Media;
-use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Assets\AlpineComponent;
-use Livewire\Features\SupportTesting\Testable;
+use Filament\Support\Assets\Asset;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Vormkracht10\MediaPicker\Testing\TestsMediaPicker;
+use Illuminate\Filesystem\Filesystem;
+use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Vormkracht10\MediaPicker\Commands\MediaPickerCommand;
+use Vormkracht10\MediaPicker\Models\Media;
+use Vormkracht10\MediaPicker\Testing\TestsMediaPicker;
 
 class MediaPickerServiceProvider extends PackageServiceProvider
 {
