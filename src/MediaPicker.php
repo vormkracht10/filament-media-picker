@@ -49,7 +49,7 @@ class MediaPicker
             $media[] = Media::create([
                 'site_ulid' => Filament::getTenant()->ulid,
                 'disk' => config('media-picker.disk'),
-                'uploaded_by' => auth()->id(),
+                'uploaded_by' => auth()->user()->id,
                 'filename' => $filename,
                 'extension' => $extension,
                 'mime_type' => $mimeType,
