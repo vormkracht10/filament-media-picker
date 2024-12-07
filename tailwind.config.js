@@ -8,4 +8,7 @@ module.exports = {
         './vendor/filament/**/*.blade.php',
         './resources/**/*.blade.php',
     ],
+    plugins: [
+        require('@tailwindcss/aspect-ratio'),
+    ],
 }
