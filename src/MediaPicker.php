@@ -58,7 +58,6 @@ class MediaPicker
                 'height' => $fileInfo['height'] ?? null,
                 'checksum' => md5_file($fullPath),
                 'public' => config('media-picker.visibility') === 'public', // TODO: Should be configurable in the form itself
-                'position' => Media::max('position') + 1, // TODO: Check if this is correct
             ]);
         }
 
