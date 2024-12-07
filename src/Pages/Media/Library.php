@@ -2,18 +2,18 @@
 
 namespace Vormkracht10\MediaPicker\Pages\Media;
 
-use Filament\Forms\Form;
-use Filament\Pages\Page;
-use Illuminate\Support\Str;
 use Filament\Actions\Action;
-use Livewire\WithPagination;
-use Illuminate\Support\Collection;
-use Filament\Support\Enums\MaxWidth;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
-use Vormkracht10\MediaPicker\Models\Media;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Pages\Page;
+use Filament\Support\Enums\MaxWidth;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Livewire\WithPagination;
 use Vormkracht10\MediaPicker\MediaPickerPlugin;
+use Vormkracht10\MediaPicker\Models\Media;
 use Vormkracht10\MediaPicker\Resources\MediaResource;
 use Vormkracht10\MediaPicker\Resources\MediaResource\CreateMedia;
 
