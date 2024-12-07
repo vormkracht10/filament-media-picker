@@ -1,7 +1,7 @@
 @props(['media'])
 <div class="space-y-6 pb-16">
     <div>
-        <img src="{{ $media->src }}" alt="" class="block aspect-[10/7] w-3/4 rounded-lg object-cover">
+        <img src="{{ $media->src }}" alt="" class="block aspect-[10/7] w-3/4 rounded-lg object-cover mx-auto">
         <div class="mt-4 flex items-start justify-between">
             <div>
                 <h2 class="text-lg font-medium text-gray-900"><span class="sr-only">Details for
