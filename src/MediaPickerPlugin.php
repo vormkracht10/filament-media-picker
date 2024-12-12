@@ -3,11 +3,13 @@
 namespace Vormkracht10\MediaPicker;
 
 use Closure;
-use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Filament\Support\Concerns\EvaluatesClosures;
+use Filament\Contracts\Plugin;
+use Filament\Support\Assets\Css;
 use Illuminate\Support\Facades\Config;
 use Vormkracht10\MediaPicker\Models\Media;
+use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Concerns\EvaluatesClosures;
 use Vormkracht10\MediaPicker\Resources\MediaResource;
 
 class MediaPickerPlugin implements Plugin
@@ -47,7 +49,9 @@ class MediaPickerPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        FilamentAsset::register([
+            Css::make('filament-media-picker', __DIR__ . '/../vendor/vormkracht10/filament-media-picker/resources/dist/filament-media-picker.css'),
+        ], package: 'vormkracht10/filament-media-picker');
     }
 
     public function boot(Panel $panel): void
