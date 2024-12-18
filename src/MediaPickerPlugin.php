@@ -49,9 +49,7 @@ class MediaPickerPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        FilamentAsset::register([
-            Css::make('filament-media-picker', __DIR__ . '/../resources/dist/filament-media-picker.css'),
-        ], package: 'vormkracht10/filament-media-picker');
+        //
     }
 
     public function boot(Panel $panel): void
