@@ -12,7 +12,7 @@ class MediaPicker
     {
         $media = [];
 
-        foreach ($data['media'] as $file) {
+        foreach ($data as $file) {
             // Get the full path on the configured disk
             $fullPath = Storage::disk(config('media-picker.disk'))->path($file);
 

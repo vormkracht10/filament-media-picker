@@ -160,7 +160,7 @@ protected function afterCreate(): void
 {
     // ...
 
-    $media = MediaPicker::create($this->data);
+    $media = MediaPicker::create($this->data['media']);
 
     foreach ($media as $value) {
         $this->getRecord()->attachMedia($value->ulid);
@@ -184,7 +184,7 @@ protected function mutateFormDataBeforeFill(array $data): array
 
 protected function mutateFormDataBeforeSave(array $data): array
 {
-    $media = MediaPicker::create($data);
+    $media = MediaPicker::create($data['media']);
 
     unset($data['media']);
 
