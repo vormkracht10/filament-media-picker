@@ -31,6 +31,7 @@ class Media extends Model
         'public' => 'boolean',
         'created_at' => 'datetime:d-m-Y H:i',
         'updated_at' => 'datetime:d-m-Y H:i',
+        'metadata' => 'array',
     ];
 
     protected $appends = [
