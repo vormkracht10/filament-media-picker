@@ -46,18 +46,19 @@ class MediaPicker
                 }
             }
 
-            $media[] = Media::create([
+            $media[] = Media::updateOrCreate([
                 'site_ulid' => Filament::getTenant()->ulid,
                 'disk' => config('media-picker.disk'),
-                'uploaded_by' => auth()->user()->id,
-                'filename' => $filename,
                 'original_filename' => pathinfo($filename, PATHINFO_FILENAME),
+                'checksum' => md5_file($fullPath),
+            ], [
+                'filename' => $filename,
+                'uploaded_by' => auth()->user()->id,
                 'extension' => $extension,
                 'mime_type' => $mimeType,
                 'size' => $fileSize,
                 'width' => $fileInfo['width'] ?? null,
                 'height' => $fileInfo['height'] ?? null,
-                'checksum' => md5_file($fullPath),
                 'public' => config('media-picker.visibility') === 'public',
             ]);
         }
