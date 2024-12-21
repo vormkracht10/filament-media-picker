@@ -17,9 +17,10 @@ return new class extends Migration
                 ->nullOnDelete();
             
             $table->string('filename');
-            $table->string('extension');
-            $table->string('mime_type');
-            $table->unsignedBigInteger('size');
+            $table->string('original_filename')->nullable();;
+            $table->string('extension')->nullable();;
+            $table->string('mime_type')->nullable();;
+            $table->unsignedBigInteger('size')->nullable();
             
             // Nullable dimensions for non-image files
             $table->unsignedInteger('width')->nullable();
@@ -27,6 +28,8 @@ return new class extends Migration
             
             $table->string('checksum', 64)->index();
             $table->boolean('public')->default(true);
+
+            $table->json('metadata')->nullable();
             
             $table->timestamps();
             $table->softDeletes();
