@@ -51,13 +51,14 @@ class MediaPicker
                 'disk' => config('media-picker.disk'),
                 'uploaded_by' => auth()->user()->id,
                 'filename' => $filename,
+                'original_filename' => pathinfo($filename, PATHINFO_FILENAME),
                 'extension' => $extension,
                 'mime_type' => $mimeType,
                 'size' => $fileSize,
                 'width' => $fileInfo['width'] ?? null,
                 'height' => $fileInfo['height'] ?? null,
                 'checksum' => md5_file($fullPath),
-                'public' => config('media-picker.visibility') === 'public', // TODO: Should be configurable in the form itself
+                'public' => config('media-picker.visibility') === 'public',
             ]);
         }
 
