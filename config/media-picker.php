@@ -12,6 +12,10 @@ return [
         'image/png',
         'image/webp',
         'image/svg+xml',
+        'video/mp4',
+        'video/webm',
+        'audio/mpeg',
+        'audio/ogg',
         'application/pdf',
     ],
 
