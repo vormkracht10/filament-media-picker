@@ -8,9 +8,13 @@ use Vormkracht10\MediaPicker\Models\Media;
 
 class MediaPicker
 {
-    public static function create(array $data): array
+    public static function create(array|string $data): array
     {
         $media = [];
+
+        if (is_string($data)) {
+            $data = [$data];
+        }
 
         foreach ($data as $file) {
             // Get the full path on the configured disk
