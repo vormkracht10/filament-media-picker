@@ -8,7 +8,7 @@ use Vormkracht10\MediaPicker\Models\Media;
 
 class MediaPicker
 {
-    public static function create(array|string $data): array
+    public static function create(array | string $data): array
     {
         $media = [];
 
